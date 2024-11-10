@@ -9,14 +9,24 @@ import "./Navbar.css"
 import { Box } from '@mui/material';
 import { Person } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export const Navbar = () => {
+    const { auth } = useSelector(store => store)
     const navigate = useNavigate();
+    const handleAvatarClick=()=>{
+        if(auth.user.role === "ROLE_CUSTOMER"){
+            navigate("/my-profile")
+        }
+        else{
+            navigate("/admin/restaurant")
+        }
+    }
     return (
-        <Box  className='sticky top-0 z-50 bg-[#f06b7a] px-5 py-[.8rem] lg:px-20 flex justify-between items-center'>
+        <Box className='sticky top-0 z-50 bg-[#f06b7a] px-5 py-[.8rem] lg:px-20 flex justify-between items-center'>
             <div className='flex items-center space-x-4'>
                 <div className='lg:mr-10 cursor-pointer flex items-center space-x-4'>
-                    <div className='logo text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-100 to-pink-200 ' style={{ fontFamily: 'Playwright, cursive' }}>
+                    <div onClick={()=>navigate("/")} className='logo text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-100 to-pink-200 ' style={{ fontFamily: 'Playwright, cursive' }}>
                         ChupFood
                     </div>
                 </div>
@@ -30,9 +40,10 @@ export const Navbar = () => {
                 </div>
 
                 <div>
-                  { false? <Avatar  sx={{ bgcolor: "white", color: pink.A400 }}>C</Avatar>: <IconButton onClick={()=>navigate("/account/register")} >
-                    <Person/>
-                    </IconButton>}
+                    {auth.user ? <Avatar onClick={handleAvatarClick} sx={{ bgcolor: "white", color: pink.A400 }}>{auth.user?.fullName[0].toUpperCase()}</Avatar>
+                        : <IconButton onClick={() => navigate("/account/register")} >
+                            <Person />
+                        </IconButton>}
                 </div>
 
                 <div>

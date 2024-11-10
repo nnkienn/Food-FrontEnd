@@ -2,6 +2,8 @@ import React from 'react';
 import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import { registerUser } from '../../State/Authentication/Action';
+import { useDispatch } from 'react-redux'
 
 const initialValues = {
     fullName: "",
@@ -12,10 +14,11 @@ const initialValues = {
 
 const RegisterForm = () => {
     const navigate = useNavigate();
+    const dispatch= useDispatch();
 
     const handleSubmit = (values) => {
         console.log("Form values:", values);
-        // Handle form submission logic here
+        dispatch(registerUser({userData:values,navigate}))
     };
 
     return (
