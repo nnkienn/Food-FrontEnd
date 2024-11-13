@@ -42,6 +42,7 @@ const restaurantReducer = (state = initialState, action) => {
         case GET_ALL_RESTAURANT_REQUEST:
         case DELETE_RESTAURANT_REQUEST:
         case UPDATE_RESTAURANT_REQUEST:
+        case UPDATE_RESTAURANT_STATUS_REQUEST:
         case GET_RESTAURANT_BY_USER_ID_REQUEST:
         case CREATE_CATEGORY_REQUEST:
         case GET_RESTAURANT_CATEGORY_REQUEST:
