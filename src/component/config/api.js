@@ -8,6 +8,5 @@ export const api = axios.create({
         "Content-Type":"application/json",
         
     },
-    withCredentials: true, // Thêm nếu bạn dùng cookie/session authentication
 
 })

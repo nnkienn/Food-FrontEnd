@@ -33,12 +33,14 @@ export const getAllRestaurantAction = (token) => {
     return async (dispatch) => {
         dispatch({ type: GET_ALL_RESTAURANT_REQUEST });
         try {
-            const { data } = await api.get(`api/restaurants`, {
+            const { data } = await api.get(`/api/restaurants`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             });
             dispatch({ type: GET_ALL_RESTAURANT_SUCCESS, payload: data });
+            console.log("restaurant profile", data);
+
         } catch (error) {
             dispatch({ type: GET_ALL_RESTAURANT_FAILURE, payload: error });
             console.log("error", error);
@@ -161,6 +163,7 @@ export const createCategory = (reqData) => {
         } catch (error) {
             dispatch({ type: CREATE_CATEGORY_FAILURE, payload: error });
             console.log("error", error);
+
         }
     };
 };

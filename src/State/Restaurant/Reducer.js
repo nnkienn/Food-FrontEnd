@@ -96,12 +96,14 @@ const restaurantReducer = (state = initialState, action) => {
                 loading: false,
                 categories: [...state.categories, action.payload]
             };
-        case GET_RESTAURANT_CATEGORY_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                categories: action.payload
-            };
+            case GET_RESTAURANT_CATEGORY_SUCCESS:
+                console.log("Fetched categories:", action.payload);
+                return {
+                    ...state,
+                    loading: false,
+                    categories: action.payload
+                };
+            
         case CREATE_RESTAURANT_FAILURE:
         case GET_ALL_RESTAURANT_FAILURE:
         case DELETE_RESTAURANT_FAILURE:

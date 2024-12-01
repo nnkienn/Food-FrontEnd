@@ -51,6 +51,7 @@ export const getMenuItemsByRestaurantId = (reqData) => {
                 }
             });
             dispatch({ type: GET_MENU_ITEMS_BY_RESTAURANT_ID_SUCCESS, payload: data });
+            console.log("menudata", data)
         } catch (error) {
             dispatch({ type: GET_MENU_ITEMS_BY_RESTAURANT_ID_FAILURE, payload: error });
         }
